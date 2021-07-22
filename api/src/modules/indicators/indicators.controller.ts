@@ -103,4 +103,16 @@ export class IndicatorsController {
   async delete(@Param('id') id: string): Promise<void> {
     return await this.indicatorsService.remove(id);
   }
+
+  //TODO: Add response DTO
+  @ApiOperation({ description: 'Deletes a indicator' })
+  @ApiOkResponse()
+  @Get(':id')
+  async getIndicatorDataBySourcingRecord(
+    @Param('sourcingRecordId') sourcingRecordId: string,
+  ): Promise<any> {
+    return await this.indicatorsService.getIndicatorDataBySourcingRecord(
+      sourcingRecordId,
+    );
+  }
 }

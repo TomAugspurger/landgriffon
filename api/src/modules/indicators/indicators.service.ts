@@ -47,4 +47,10 @@ export class IndicatorsService extends AppBaseService<
 
     return found;
   }
+  //TODO add response DTO
+  async getIndicatorDataBySourcingId(sourcingRecordId: string): Promise<any> {
+    return await this.indicatorRepository.getIndicatorDataBySourcingRecord(
+      sourcingRecordId,
+    );
+  }
 }
