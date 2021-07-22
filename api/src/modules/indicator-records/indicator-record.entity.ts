@@ -12,7 +12,7 @@ import { TimestampedBaseEntity } from 'baseEntities/timestamped-base-entity';
 import { SourcingRecord } from 'modules/sourcing-records/sourcing-record.entity';
 import { IndicatorCoefficient } from 'modules/indicator-coefficients/indicator-coefficient.entity';
 
-export const indicatorRecord: BaseServiceResource = {
+export const indicatorRecordResource: BaseServiceResource = {
   className: 'IndicatorRecord',
   name: {
     singular: 'indicatorRecord',
@@ -26,7 +26,6 @@ export const indicatorRecord: BaseServiceResource = {
     'indicatorId',
   ],
 };
-
 export enum TASK_STATUS {
   UNSTARTED = 'Unstarted',
   STARTED = 'started',
