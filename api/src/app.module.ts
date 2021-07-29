@@ -25,6 +25,7 @@ import { ScenariosModule } from 'modules/scenarios/scenarios.module';
 import { ScenarioInterventionsModule } from 'modules/scenario-interventions/scenario-interventions.module';
 import { ImportDataModule } from 'modules/import-data/import-data.module';
 import { IndicatorRecordsModule } from 'modules/indicator-records/indicator-records.module';
+import { GeolocationModule } from 'modules/geolocation/geolocation.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { IndicatorRecordsModule } from 'modules/indicator-records/indicator-reco
     UnitsModule,
     UsersModule,
     ImportDataModule,
+    GeolocationModule,
   ],
   providers: [
     {
