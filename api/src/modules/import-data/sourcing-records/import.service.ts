@@ -15,6 +15,14 @@ import { SourcingLocationGroupsService } from 'modules/sourcing-location-groups/
 import { validateOrReject } from 'class-validator';
 import { SourcingLocationGroup } from 'modules/sourcing-location-groups/sourcing-location-group.entity';
 import { SourcingRecord } from 'modules/sourcing-records/sourcing-record.entity';
+import { GeolocationService } from 'modules/geolocation/geolocation.service';
+
+export interface LocationData {
+  locationAddressInput?: string;
+  locationCountryInput?: string;
+  locationLatitude?: string;
+  locationLongitude?: string;
+}
 
 export interface SourcingRecordsSheets extends Record<string, any[]> {
   materials: Record<string, any>[];
@@ -39,6 +47,7 @@ export class SourcingRecordsImportService {
   );
 
   constructor(
+    protected readonly geolocationService: GeolocationService,
     protected readonly materialService: MaterialsService,
     protected readonly businessUnitService: BusinessUnitsService,
     protected readonly supplierService: SuppliersService,
@@ -50,7 +59,7 @@ export class SourcingRecordsImportService {
     protected readonly dtoProcessor: SourcingRecordsDtoProcessorService,
   ) {}
 
-  async importSourcingRecords(filePath: string): Promise<void> {
+  async importSourcingRecords(filePath: string): Promise<any> {
     await this.fileService.isFilePresentInFs(filePath);
     try {
       const parsedXLSXDataset: SourcingRecordsSheets = await this.fileService.transformToJson(
@@ -75,6 +84,15 @@ export class SourcingRecordsImportService {
       await this.supplierService.createTree(dtoMatchedData.suppliers);
       await this.adminRegionService.createTree(dtoMatchedData.adminRegions);
       await this.saveSourcingData(dtoMatchedData.sourcingData);
+      const locationdata: LocationData = {
+        locationAddressInput:
+          dtoMatchedData.sourcingData[0].locationAddressInput,
+        locationCountryInput:
+          dtoMatchedData.sourcingData[0].locationCountryInput,
+        locationLatitude: dtoMatchedData.sourcingData[0].locationCountryInput,
+        locationLongitude: dtoMatchedData.sourcingData[0].locationCountryInput,
+      };
+      return await this.getAdminRegionByGeoLocation(locationdata);
     } finally {
       await this.fileService.deleteDataFromFS(filePath);
     }
@@ -146,5 +164,11 @@ export class SourcingRecordsImportService {
       }),
     );
     await this.sourcingRecordService.save(sourcingRecordsWithSourcingIDs);
+  }
+
+  private async getAdminRegionByGeoLocation(locationData: LocationData) {
+    const res = await this.geolocationService.geocode(locationData);
+    console.log(res);
+    return res;
   }
 }
