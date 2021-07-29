@@ -9,105 +9,127 @@ variable "environment" {
   description = "An environment namespace for the infrastructure."
 }
 
-variable "domain" {
+variable "location" {
   type        = string
-  description = "The base domain name"
+  description = ""
 }
 
-variable "aws_region" {
-  default     = "eu-west-3"
+variable "resource_group_name" {
   type        = string
-  description = "A valid AWS region to configure the underlying AWS SDK."
+  description = ""
 }
 
-variable "dynamo_db_lock_table_name" {
-  default     = "aws-locks"
+variable "storage_account_name" {
   type        = string
-  description = "Name of the lock table in Dynamo DB"
+  description = ""
 }
 
-variable "tf_state_bucket" {
+variable "storage_container_name" {
   type        = string
-  description = "The name of the S3 bucket where the state is stored"
+  description = ""
 }
 
-variable "allowed_account_id" {
-  type        = string
-  description = "Allowed AWS Account ID"
-}
 
-#
-# RDS configuration
-#
-variable "rds_log_retention_period" {
-  type        = number
-  default     = 1
-  description = "Time in days to keep log files in cloud watch"
-}
 
-variable "rds_engine_version" {
-  type        = string
-  description = "RDS Database engine version"
-}
+# variable "domain" {
+#   type        = string
+#   description = "The base domain name"
+# }
 
-variable "rds_instance_class" {
-  type        = string
-  default     = "db.t3.micro"
-  description = "Instance type of Aurora PostgreSQL server"
-}
+# variable "aws_region" {
+#   default     = "eu-west-3"
+#   type        = string
+#   description = "A valid AWS region to configure the underlying AWS SDK."
+# }
 
-variable "rds_instance_count" {
-  type        = number
-  default     = 1
-  description = "Number of Aurora PostgreSQL instances before autoscaling"
-}
+# variable "dynamo_db_lock_table_name" {
+#   default     = "aws-locks"
+#   type        = string
+#   description = "Name of the lock table in Dynamo DB"
+# }
 
-variable "rds_backup_retention_period" {
-  type        = number
-  default     = 7
-  description = "Time in days to keep db backups"
-}
+# variable "tf_state_bucket" {
+#   type        = string
+#   description = "The name of the S3 bucket where the state is stored"
+# }
 
-#
-# EKS default node group
-#
+# variable "allowed_account_id" {
+#   type        = string
+#   description = "Allowed AWS Account ID"
+# }
 
-variable "default_node_group_instance_types" {
-  type    = string
-  default = "m5a.large"
-}
+# #
+# # RDS configuration
+# #
+# variable "rds_log_retention_period" {
+#   type        = number
+#   default     = 1
+#   description = "Time in days to keep log files in cloud watch"
+# }
 
-variable "default_node_group_min_size" {
-  type    = number
-  default = 1
-}
+# variable "rds_engine_version" {
+#   type        = string
+#   description = "RDS Database engine version"
+# }
 
-variable "default_node_group_max_size" {
-  type    = number
-  default = 1
-}
+# variable "rds_instance_class" {
+#   type        = string
+#   default     = "db.t3.micro"
+#   description = "Instance type of Aurora PostgreSQL server"
+# }
 
-variable "default_node_group_desired_size" {
-  type    = number
-  default = 1
-}
+# variable "rds_instance_count" {
+#   type        = number
+#   default     = 1
+#   description = "Number of Aurora PostgreSQL instances before autoscaling"
+# }
 
-variable "data_node_group_instance_types" {
-  type    = string
-  default = "m5a.large"
-}
+# variable "rds_backup_retention_period" {
+#   type        = number
+#   default     = 7
+#   description = "Time in days to keep db backups"
+# }
 
-variable "data_node_group_min_size" {
-  type    = number
-  default = 1
-}
+# #
+# # EKS default node group
+# #
 
-variable "data_node_group_max_size" {
-  type    = number
-  default = 1
-}
+# variable "default_node_group_instance_types" {
+#   type    = string
+#   default = "m5a.large"
+# }
 
-variable "data_node_group_desired_size" {
-  type    = number
-  default = 1
-}
+# variable "default_node_group_min_size" {
+#   type    = number
+#   default = 1
+# }
+
+# variable "default_node_group_max_size" {
+#   type    = number
+#   default = 1
+# }
+
+# variable "default_node_group_desired_size" {
+#   type    = number
+#   default = 1
+# }
+
+# variable "data_node_group_instance_types" {
+#   type    = string
+#   default = "m5a.large"
+# }
+
+# variable "data_node_group_min_size" {
+#   type    = number
+#   default = 1
+# }
+
+# variable "data_node_group_max_size" {
+#   type    = number
+#   default = 1
+# }
+
+# variable "data_node_group_desired_size" {
+#   type    = number
+#   default = 1
+# }
